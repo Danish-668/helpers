@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-SCRIPT_PATH="$HOME/espanso-restart-on-keyboard.sh"
+SCRIPT_PATH="$HOME/.local/bin/espanso-restart-on-keyboard.sh"
 SERVICE_DIR="$HOME/.config/systemd/user"
 SERVICE_NAME="espanso-keyboard-monitor.service"
 
@@ -14,6 +14,7 @@ for cmd in espanso udevadm stdbuf; do
 done
 
 # Create the monitor script
+mkdir -p "$(dirname "$SCRIPT_PATH")"
 cat > "$SCRIPT_PATH" << 'MONITOR'
 #!/bin/bash
 # Monitor for keyboard plug-in events and restart espanso.
